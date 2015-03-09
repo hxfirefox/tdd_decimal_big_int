@@ -20,7 +20,7 @@ public class CalcExpressionTest {
 
     @Before
     public void setUp() throws Exception {
-        calcExp = new CalcExpression(exp);
+        calcExp = new CalcExpression();
     }
 
     @Test
@@ -28,7 +28,7 @@ public class CalcExpressionTest {
         //given
 
         //when
-        final String result = calcExp.getResult();
+        final String result = calcExp.calculate(exp);
         //then
         assertThat(expect.equals(result), is(true));
     }
