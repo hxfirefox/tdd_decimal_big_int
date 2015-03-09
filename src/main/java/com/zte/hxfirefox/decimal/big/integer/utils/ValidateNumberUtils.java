@@ -1,4 +1,4 @@
-package com.zte.hxfirefox.decimal.big.integer;
+package com.zte.hxfirefox.decimal.big.integer.utils;
 
 import java.util.regex.Pattern;
 

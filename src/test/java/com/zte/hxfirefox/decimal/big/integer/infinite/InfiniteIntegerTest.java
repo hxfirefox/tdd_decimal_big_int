@@ -1,5 +1,6 @@
-package com.zte.hxfirefox.decimal.big.integer;
+package com.zte.hxfirefox.decimal.big.integer.infinite;
 
+import com.zte.hxfirefox.decimal.big.integer.infinite.InfiniteInteger;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;

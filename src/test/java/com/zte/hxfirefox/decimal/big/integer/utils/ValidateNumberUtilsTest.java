@@ -1,5 +1,6 @@
-package com.zte.hxfirefox.decimal.big.integer;
+package com.zte.hxfirefox.decimal.big.integer.utils;
 
+import com.zte.hxfirefox.decimal.big.integer.utils.ValidateNumberUtils;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
