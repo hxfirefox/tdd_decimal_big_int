@@ -54,22 +54,22 @@ public class InfiniteInteger {
         final String origin4ADBC = resultADBC[0];
         final String carry4ADBC = resultADBC[1];
 
-        return String.format("%s%s", 
-                signOfString, 
-                trimHeadZero(String.format("%s%s%s", 
-                        add(mul(a, c), carry4ADBC), 
+        return String.format("%s%s",
+                signOfString,
+                trimHeadZero(String.format("%s%s%s",
+                        add(mul(a, c), carry4ADBC),
                         origin4ADBC, origin4BD)));
     }
 
     public static String add(String sourceNumber, String targetNumber) {
         if (isOnlyOneNegative(sourceNumber, targetNumber)) {
             return sub(targetNumber, absString(sourceNumber));
-        } 
-        
+        }
+
         if (isOnlyOneNegative(targetNumber, sourceNumber)) {
             return sub(sourceNumber, absString(targetNumber));
         }
-        
+
         if (isBothNegative(sourceNumber, targetNumber)) {
             return NEGATIVE_SIGN + add(absString(sourceNumber), absString(targetNumber));
         }
@@ -112,7 +112,7 @@ public class InfiniteInteger {
             result = generateResultWithDigitCarry(result, digit);
         }
 
-        return trimHeadZero(carry != ZERO_CARRY ? 
+        return trimHeadZero(carry != ZERO_CARRY ?
                 generateResultWithDigitCarry(result, carry) : result);
     }
 
@@ -129,10 +129,10 @@ public class InfiniteInteger {
         return subWithOrder(sourceNumber, targetNumber, digitCompare);
     }
 
-    private static String subWithOrder(String sourceNumber, 
+    private static String subWithOrder(String sourceNumber,
                                        String targetNumber, DigitCompare compare) {
 
-        String result = trimHeadZero(subBaseDigit(sourceNumber, 
+        String result = trimHeadZero(subBaseDigit(sourceNumber,
                 formatNumber(targetNumber, sourceNumber.length())));
         return EMPTY.equals(result) ? INFINITE_INTEGER_ZERO :
                 (compare == LT ? NEGATIVE_SIGN : "") + result;
@@ -143,7 +143,15 @@ public class InfiniteInteger {
     }
 
     private static String getSign4Mul(String x, String y) {
-        return (x.startsWith(NEGATIVE_SIGN) || y.startsWith(NEGATIVE_SIGN)) ? NEGATIVE_SIGN : "";
+        return isSameSign(x, y) ? "" : NEGATIVE_SIGN;
+    }
+
+    private static boolean isSameSign(String x, String y) {
+        return isBothNegative(x, y) || isBothPositive(x, y);
+    }
+
+    private static boolean isBothPositive(String x, String y) {
+        return (!x.startsWith(NEGATIVE_SIGN) && !y.startsWith(NEGATIVE_SIGN));
     }
 
     public static boolean isBothNegative(String sourceNumber, String targetNumber) {
